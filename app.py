@@ -91,6 +91,32 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
+####Positive Case 1: Safe Python Code
+def greet(name):
+    print(f"Hello, {name}!")  # ✅ Safe print
+
+
+####Positive Case 2: Safe password handling (just a placeholder)
+import getpass
+
+def secure_login():
+    password = getpass.getpass("Enter password: ")  # ✅ Safe practice
+    print("Password entered.")
+
+
+#####Negative Case 1: Use eval() (Bandit will catch this!)
+def unsafe_eval():
+    user_input = "2 + 2"
+    eval(user_input)  # ❌ Dangerous: Bandit will warn
+
+#####Negative Case 2: Hardcoded password (Bandit will warn)
+def login():
+    password = "123456"  # ❌ Hardcoded password
+    print("Logging in with:", password)
+
+
+
+
 #----------------------------------------------------------------------------#
 # Launch.
 #----------------------------------------------------------------------------#

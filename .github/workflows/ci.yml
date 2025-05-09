@@ -33,3 +33,13 @@ jobs:
         run: |
           pip install flake8
           flake8 .
+
+      - name: Run Semgrep for security analysis
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "p/python"
+
+      - name: Run Gitleaks to scan for sensitive data
+        uses: zricethezav/gitleaks-action@v1
+        with:
+          scan: true

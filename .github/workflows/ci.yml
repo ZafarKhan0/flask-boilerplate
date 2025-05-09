@@ -43,3 +43,8 @@ jobs:
         uses: zricethezav/gitleaks-action@v1
         with:
           scan: true
+
+      - name: Install Safety and check dependencies
+        run: |
+          pip install safety
+          safety check --full-report

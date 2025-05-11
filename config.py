@@ -1,14 +1,9 @@
 import os
+from os import environ
 
-# Grabs the folder where the script runs.
-basedir = os.path.abspath(os.path.dirname(__file__))
+class Config:
+    SECRET_KEY = environ.get('SECRET_KEY')  # Load from env
+    DEBUG = False
 
-# Enable debug mode.
-DEBUG = True
-
-# Secret key for session management. You can generate random strings here:
-# https://randomkeygen.com/
-SECRET_KEY = 'my precious'
-
-# Connect to the database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+class DevelopmentConfig(Config):
+    DEBUG = True  # Debug mode only in dev

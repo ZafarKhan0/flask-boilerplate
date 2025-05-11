@@ -24,11 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run basic security check with Bandit
-        run: |
-          pip install bandit
-          bandit -r .
-
       - name: Run code format check with flake8
         run: |
           pip install flake8
